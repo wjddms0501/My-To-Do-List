@@ -50,7 +50,7 @@ const App = () => {
     })}*/
     <div className="all">
       <div className="top">
-        <p>My To Do List</p>
+        <p>🎉My To Do List🎉</p>
         <p>React</p>
       </div>
       <div className="middle">
@@ -85,7 +85,7 @@ const App = () => {
       </div>
       <div className="contents">
         <div>
-          <h2>Working</h2>
+          <h2>Working..🎂</h2>
           <div className="app-style">
             {users.map((user) => {
               if (
@@ -105,7 +105,7 @@ const App = () => {
           </div>
         </div>
         <div>
-          <h2>Done</h2>
+          <h2>Done..🎁</h2>
           <div className="app-style">
             {users.map((user) => {
               if (
