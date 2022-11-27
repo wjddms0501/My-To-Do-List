@@ -3,28 +3,13 @@ import "./App.css";
 import CustomButton from "./components/Custombutton";
 import User from "./components/User";
 
-//버튼 Component
-//이렇게 Component를 분리해주면 추가하기는 초록, 삭제는 빨강처럼
-//간단히 props에 색을 넘겨주는 것만으로도 버튼의 색설정을 할 수 있다.
-/*function CustomButton(props){
-  const {color,onClick,children} = props //구조 분해 할당
-  if(color){
-    return <button
-    style = {{backgroundColor:color, color:"white"}} 
-    onClick = {onClick}>{children}</button>
-  }
-  return <button onClick = {onClick}>{children}</button>
-}*/
-//만약에 props에 color로 받아온 값이 있으면 color를 적용한 버튼을 만들어주고
-//그게 아니면 그냥 버튼을 줄 거다.
-//무조건 color가 있는 버튼을 만들어주고 싶다면 if문을 지우면된다.
-
+//찾아본 문서, 구글링 단어 검색법 알려달라하기
 const App = () => {
   const [users, setUsers] = useState([
-    { id: 1, title: "리액트 공부하기", todo: "공부하자" },
-    { id: 2, title: "리액트 쌈싸먹기", todo: "쌈싸먹자" },
-    { id: 3, title: "리액트 예습하기", todo: "예습하자" },
-    { id: 4, title: "리액트 복습하기", todo: "복습하자" },
+    { id: 1, title: "리액트 공부하기", todo: "공부하자", isDone: true },
+    { id: 2, title: "리액트 쌈싸먹기", todo: "쌈싸먹자", isDone: true },
+    { id: 3, title: "리액트 예습하기", todo: "예습하자", isDone: true },
+    { id: 4, title: "리액트 복습하기", todo: "복습하자", isDone: true },
   ]);
   const [title, setTitle] = useState("");
   const [todo, setTodo] = useState("");
@@ -34,20 +19,25 @@ const App = () => {
       id: users.length + 1,
       title: title,
       todo: todo,
+      isDone: true,
     };
-    setUsers([...users, newUser]);
+    setUsers([...users, newUser]); //[...A] 전개연산자
   };
 
   const deleteUserHandler = (id) => {
     const newUserList = users.filter((user) => user.id !== id);
+    //for문처럼 id값이 같은 값이 나올 때까지 계속 돈다.
     setUsers(newUserList);
   };
 
+  const onChangeHandler = (id) => {
+    setUsers(
+      users.map((user) => {
+        return user.id === id ? (user.isDone = true) : user;
+      })
+    );
+  };
   return (
-    /*<div className="app-style">
-    {users.map((user) => {
-      return <User user={user} key={user.id}></User>;
-    })}*/
     <div className="all">
       <div className="top">
         <p>🎉My To Do List🎉</p>
@@ -88,18 +78,15 @@ const App = () => {
           <h2>Working..🎂</h2>
           <div className="app-style">
             {users.map((user) => {
-              if (
-                (user.todo === "공부하자", "쌈싸먹자", "예습하자", "복습하자")
-              ) {
+              if (user.isDone === true) {
                 return (
                   <User
                     handleDelete={deleteUserHandler}
                     user={user}
                     key={user.id}
+                    handleChange={onChangeHandler}
                   ></User>
                 );
-              } else {
-                return null;
               }
             })}
           </div>
@@ -108,18 +95,15 @@ const App = () => {
           <h2>Done..🎁</h2>
           <div className="app-style">
             {users.map((user) => {
-              if (
-                (user.todo === "공부하자", "쌈싸먹자", "예습하자", "복습하자")
-              ) {
+              if (user.isDone === false) {
                 return (
                   <User
                     handleDelete={deleteUserHandler}
                     user={user}
                     key={user.id}
+                    handleChange={onChangeHandler}
                   ></User>
                 );
-              } else {
-                return null;
               }
             })}
           </div>
