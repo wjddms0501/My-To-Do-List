@@ -37,6 +37,7 @@ const App = () => {
       })
     );
   };
+
   return (
     <div className="all">
       <div className="top">
@@ -47,10 +48,10 @@ const App = () => {
         <div className="txtline">
           <p>
             제목
-            <input
+            <input //1. input칸에
               className="txt"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={title} //3. 2번에서 받아온 값이 value에 저장된다.
+              onChange={(e) => setTitle(e.target.value)} //2. setTitle이 새로 입력된 value 값을 targeting해서 3번의 값을 바꿔준다.
             />
           </p>
           <p>

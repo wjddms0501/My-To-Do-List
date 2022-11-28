@@ -1,6 +1,7 @@
 function CustomButton(props) {
   const { width, height, border, backgroundColor, color, onClick, children } =
     props;
+  console.dir(props);
   if (backgroundColor) {
     return (
       <button
