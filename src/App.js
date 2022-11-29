@@ -78,35 +78,31 @@ const App = () => {
         <div>
           <h2>Working..🎂</h2>
           <div className="app-style">
-            {users.map((user) => {
-              if (user.isDone === true) {
-                return (
-                  <User
-                    handleDelete={deleteUserHandler}
-                    user={user}
-                    key={user.id}
-                    handleChange={onChangeHandler}
-                  ></User>
-                );
-              }
-            })}
+            {users.map((user) =>
+              user.isDone === true ? (
+                <User
+                  handleDelete={deleteUserHandler}
+                  user={user}
+                  key={user.id}
+                  handleChange={onChangeHandler}
+                ></User>
+              ) : null
+            )}
           </div>
         </div>
         <div>
           <h2>Done..🎁</h2>
           <div className="app-style">
-            {users.map((user) => {
-              if (user.isDone === false) {
-                return (
-                  <User
-                    handleDelete={deleteUserHandler}
-                    user={user}
-                    key={user.id}
-                    handleChange={onChangeHandler}
-                  ></User>
-                );
-              }
-            })}
+            {users.map((user) =>
+              user.isDone === false ? (
+                <User
+                  handleDelete={deleteUserHandler}
+                  user={user}
+                  key={user.id}
+                  handleChange={onChangeHandler}
+                ></User>
+              ) : null
+            )}
           </div>
         </div>
       </div>
