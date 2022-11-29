@@ -11,7 +11,7 @@ const App = () => {
     { id: 3, title: "리액트 예습하기", todo: "예습하자", isDone: true },
     { id: 4, title: "리액트 복습하기", todo: "복습하자", isDone: true },
   ]);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(""); // 제목과 내용을 추가해주는 데 사용됨
   const [todo, setTodo] = useState("");
 
   const addUserHandler = () => {
@@ -21,17 +21,19 @@ const App = () => {
       todo: todo,
       isDone: true,
     };
-    setUsers([...users, newUser]); //[...A] 전개연산자
+    setUsers([...users, newUser]); //serUsers: users의 상태를 추가해서 변경해줌 // [...A] : 전개연산자
   };
 
   const deleteUserHandler = (id) => {
-    const newUserList = users.filter((user) => user.id !== id);
+    const newUserList = users.filter((user) => user.id !== id); //users를 가져와서 filter를 돌릴건데 users를 user라는 이름으로 옆으로 넘겨준다.
+    //user.id는 users의 내용, id는 내가 선택한 id값
     //for문처럼 id값이 같은 값이 나올 때까지 계속 돈다.
     setUsers(newUserList);
   };
 
   const onChangeHandler = (id) => {
     setUsers(
+      //usestate의 함수형 업데이트 ★찾아보기
       users.map((user) => {
         return user.id === id ? (user.isDone = true) : user;
       })
@@ -50,7 +52,7 @@ const App = () => {
             제목
             <input //1. input칸에
               className="txt"
-              value={title} //3. 2번에서 받아온 값이 value에 저장된다.
+              value={title} //3. 맨 위체 선언한 title값이 바뀌면서 value에 title값도 자동으로 바뀐다.
               onChange={(e) => setTitle(e.target.value)} //2. setTitle이 새로 입력된 value 값을 targeting해서 3번의 값을 바꿔준다.
             />
           </p>
